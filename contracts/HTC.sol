@@ -52,15 +52,19 @@ contract TinaToken is ERC721, ERC721Enumerable, ERC721Pausable, Ownable {
         require(allowedListMintOpen, "Sorry this mint is not avilabe for now");
         require(allowedList[msg.sender], "Your are not allowed user");
         require(msg.value == 0.003 ether , "Insuffcient balance"); //requireing payment to get the NFT
-        require(totalSupply() < maxSupply, "The NFT is minted all"); // setting limit of 500
-        uint256 tokenId = _nextTokenId++;
-        _safeMint(msg.sender, tokenId);
+        internalMint();
     }
     //Add payment
     //Add total supply cuz we have limited baseURI number
     function publicMint() public payable{
         require(publicMintOpen, "Sorry this mint is not avilabe for now");
         require(msg.value == 0.03 ether , "Insuffcient balance"); //requireing payment to get the NFT
+        internalMint();
+    }
+
+    //internal mint to simplify our code
+
+    function internalMint() internal {
         require(totalSupply() < maxSupply, "The NFT is minted all"); // setting limit of 500
         uint256 tokenId = _nextTokenId++;
         _safeMint(msg.sender, tokenId);
