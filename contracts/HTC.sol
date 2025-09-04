@@ -16,6 +16,10 @@ contract TinaToken is ERC721, ERC721Enumerable, ERC721Pausable, Ownable {
     bool public publicMintOpen = false;
     bool public allowedListMintOpen = false;
 
+    //Creating allowed users that can use allowedListMint
+
+    mapping(address => bool) public allowedList;
+
     constructor()
         ERC721("TinaToken", "TNA")
         Ownable(msg.sender)
@@ -36,8 +40,17 @@ contract TinaToken is ERC721, ERC721Enumerable, ERC721Pausable, Ownable {
         allowedListMintOpen = _allowedListMintOpen;
         publicMintOpen = _publicMintOpen;
     }
+    //Setting the allowedList addresses
+    function setAllowList(address[] calldata _addresses) external onlyOwner { //accept the addresses as an array
+        for(uint i=0; i< _addresses.length; i++){ // distributing each addresses with index of i
+            allowedList[_addresses[i]] = true; // Setting of there bool to true
+        }
+    }
+
+    //only allowed ppls can mint with this allowedList[]
     function allowListMint() public payable{
         require(allowedListMintOpen, "Sorry this mint is not avilabe for now");
+        require(allowedList[msg.sender], "Your are not allowed user");
         require(msg.value == 0.003 ether , "Insuffcient balance"); //requireing payment to get the NFT
         require(totalSupply() < maxSupply, "The NFT is minted all"); // setting limit of 500
         uint256 tokenId = _nextTokenId++;

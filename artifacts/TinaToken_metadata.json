@@ -287,6 +287,45 @@
 				"type": "event"
 			},
 			{
+				"inputs": [],
+				"name": "allowListMint",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "allowedList",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "allowedListMintOpen",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -321,6 +360,24 @@
 					}
 				],
 				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bool",
+						"name": "_allowedListMintOpen",
+						"type": "bool"
+					},
+					{
+						"internalType": "bool",
+						"name": "_publicMintOpen",
+						"type": "bool"
+					}
+				],
+				"name": "editMintWindow",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -440,6 +497,19 @@
 			},
 			{
 				"inputs": [],
+				"name": "publicMintOpen",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "renounceOwnership",
 				"outputs": [],
 				"stateMutability": "nonpayable",
@@ -492,6 +562,19 @@
 					}
 				],
 				"name": "safeTransferFrom",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address[]",
+						"name": "_addresses",
+						"type": "address[]"
+					}
+				],
+				"name": "setAllowList",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -1019,11 +1102,11 @@
 			]
 		},
 		"contracts/HTC.sol": {
-			"keccak256": "0xb8ac13094ff1d72e0ee6a5d03a30389e99e580c0498719a70af52db358932d56",
+			"keccak256": "0x20aee7555b552a50a3bfb460ebedec165910a75ff8b5b4b3df74bf9decab5fe8",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://9e091e7e2acb59d5a29d8fe826fb4590e350ed1831f1f5e52f8f975c9af1c613",
-				"dweb:/ipfs/QmUJBgrDrCxxQgWXy1f3oqp75e5omUi7aM5ogUcLnB2MGn"
+				"bzz-raw://e33bf2ea1c94cd4a2a0570652e7bc206576566b0579028088c5a801d868023d9",
+				"dweb:/ipfs/QmTJU58RHW22af3JcJa9HzbuKXDXiqv2Yp2xouN393wr4P"
 			]
 		}
 	},
