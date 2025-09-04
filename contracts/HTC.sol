@@ -1,51 +1,61 @@
-// SPDX-License-Identifier: GPL-3.0
+// SPDX-License-Identifier: MIT
+// Compatible with OpenZeppelin Contracts ^5.4.0
+pragma solidity ^0.8.27;
 
-pragma solidity ^0.8.30;
+import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import {ERC721Enumerable} from "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
+import {ERC721Pausable} from "@openzeppelin/contracts/token/ERC721/extensions/ERC721Pausable.sol";
+import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 
-import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Capped.sol";
-import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
+contract TinaToken is ERC721, ERC721Enumerable, ERC721Pausable, Ownable {
+    uint256 private _nextTokenId;
 
-contract HabeshaToken is ERC20Capped, ERC20Burnable{
+    constructor(address initialOwner)
+        ERC721("TinaToken", "TNA")
+        Ownable(initialOwner)
+    {}
 
-    // initial supply for the owner = 70,000,00 is done 
-    // max supply in totoal for both owner and reward will be the CAP = 100,000,000
-    //We are going to make the token burnable
-    // burning token is used after the deploy may be we decide to reduce the total supply so we will burn it
-    // create a new block to destribute a reward for the miners
-
-
-    address payable public owner;
-    uint public blockReward;
-
-
-    constructor(uint cap , uint reward) ERC20 ("HabeshaToken", "HTC") ERC20Capped(cap * (10 ** decimals()) ) { // passing our maximum supply and naming out Token
-        owner = payable( msg.sender);
-        _mint(owner, 70000000 * (10 ** decimals())); // Sending the 70% of the Token to the owner of the Token
-
-        blockReward = reward * (10 ** decimals()); // Setting the reward amount
-    }
-    //function _mint(address to, uint256 amount) internal override(ERC20, ERC20Capped) {
-    //    super._mint(to, amount);
-    //}
-
-    function _mintMinorReward() internal { // Mint the reward for the miner in the block (validator)
-        _mint(block.coinbase, blockReward);
+    function _baseURI() internal pure override returns (string memory) {
+        return "https://ipfs.io/ipfs/QmRKxo1A65A1V4jTk7Pf2Mz7yHSD8vNfasdzJgJnSNs5BA";
     }
 
-
-    function _update(address from, address to, uint256 value) internal override (ERC20, ERC20Capped) {
-        super._update(from, to, value);
+    function pause() public onlyOwner {
+        _pause();
     }
 
-
-
-    modifier onlyOwner{ // middlware to validate the owner only
-        require(msg.sender == owner, "Sorry you must be an owner to access this one");
-        _;
+    function unpause() public onlyOwner {
+        _unpause();
     }
 
-    function setBlockReward(uint reward) public onlyOwner{ // This function is wanted if the owner wants to change the block reward after deployment
-        blockReward = reward * (10 ** decimals()); 
+    function safeMint(address to) public onlyOwner returns (uint256) {
+        uint256 tokenId = _nextTokenId++;
+        _safeMint(to, tokenId);
+        return tokenId;
+    }
+
+    // The following functions are overrides required by Solidity.
+
+    function _update(address to, uint256 tokenId, address auth)
+        internal
+        override(ERC721, ERC721Enumerable, ERC721Pausable)
+        returns (address)
+    {
+        return super._update(to, tokenId, auth);
+    }
+
+    function _increaseBalance(address account, uint128 value)
+        internal
+        override(ERC721, ERC721Enumerable)
+    {
+        super._increaseBalance(account, value);
+    }
+
+    function supportsInterface(bytes4 interfaceId)
+        public
+        view
+        override(ERC721, ERC721Enumerable)
+        returns (bool)
+    {
+        return super.supportsInterface(interfaceId);
     }
 }
