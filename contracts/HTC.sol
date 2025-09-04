@@ -9,6 +9,12 @@ import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 
 contract TinaToken is ERC721, ERC721Enumerable, ERC721Pausable, Ownable {
     uint256 private _nextTokenId;
+    uint maxSupply = 3;
+
+
+    //Variables to turn on and off the mint functions
+    bool public publicMintOpen = false;
+    bool public allowedListMintOpen = false;
 
     constructor()
         ERC721("TinaToken", "TNA")
@@ -26,11 +32,23 @@ contract TinaToken is ERC721, ERC721Enumerable, ERC721Pausable, Ownable {
     function unpause() public onlyOwner {
         _unpause();
     }
+    function editMintWindow(bool _allowedListMintOpen, bool _publicMintOpen) public onlyOwner{
+        allowedListMintOpen = _allowedListMintOpen;
+        publicMintOpen = _publicMintOpen;
+    }
+    function allowListMint() public payable{
+        require(allowedListMintOpen, "Sorry this mint is not avilabe for now");
+        require(msg.value == 0.003 ether , "Insuffcient balance"); //requireing payment to get the NFT
+        require(totalSupply() < maxSupply, "The NFT is minted all"); // setting limit of 500
+        uint256 tokenId = _nextTokenId++;
+        _safeMint(msg.sender, tokenId);
+    }
     //Add payment
     //Add total supply cuz we have limited baseURI number
     function publicMint() public payable{
-        require(msg.value == 0.03 ether , "Sorry you must pay the ammount"); //requireing payment to get the NFT
-        require(totalSupply() < 500, "The NFT is minted all"); // setting limit of 500
+        require(publicMintOpen, "Sorry this mint is not avilabe for now");
+        require(msg.value == 0.03 ether , "Insuffcient balance"); //requireing payment to get the NFT
+        require(totalSupply() < maxSupply, "The NFT is minted all"); // setting limit of 500
         uint256 tokenId = _nextTokenId++;
         _safeMint(msg.sender, tokenId);
     }

@@ -1019,11 +1019,11 @@
 			]
 		},
 		"contracts/HTC.sol": {
-			"keccak256": "0xf428b38d7d63cda67ec992dd7f21e52711a4a5b6f97dd8ccb5dc723682262823",
+			"keccak256": "0xb8ac13094ff1d72e0ee6a5d03a30389e99e580c0498719a70af52db358932d56",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://18f46ed29f758aa385f06c9011e68bdf13cf946e55cb331c3f21dbb7fc16d253",
-				"dweb:/ipfs/QmNWPrW8S7wrR65efkyfDeG8MA451eMQShXMzi6XxgRRfd"
+				"bzz-raw://9e091e7e2acb59d5a29d8fe826fb4590e350ed1831f1f5e52f8f975c9af1c613",
+				"dweb:/ipfs/QmUJBgrDrCxxQgWXy1f3oqp75e5omUi7aM5ogUcLnB2MGn"
 			]
 		}
 	},
