@@ -6,13 +6,7 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "initialOwner",
-						"type": "address"
-					}
-				],
+				"inputs": [],
 				"stateMutability": "nonpayable",
 				"type": "constructor"
 			},
@@ -439,27 +433,15 @@
 			},
 			{
 				"inputs": [],
-				"name": "renounceOwnership",
+				"name": "publicMint",
 				"outputs": [],
-				"stateMutability": "nonpayable",
+				"stateMutability": "payable",
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "to",
-						"type": "address"
-					}
-				],
-				"name": "safeMint",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
+				"inputs": [],
+				"name": "renounceOwnership",
+				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			},
@@ -1037,11 +1019,11 @@
 			]
 		},
 		"contracts/HTC.sol": {
-			"keccak256": "0x58dee61e0a3e1ae97269da1803c777a216ad6f006d5475942b6562127a9669c7",
+			"keccak256": "0xf428b38d7d63cda67ec992dd7f21e52711a4a5b6f97dd8ccb5dc723682262823",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://d0aa7dc27264e752b9ccde9543026fc36ae06b9003843da839fb4f54e6fa0d8e",
-				"dweb:/ipfs/QmYdwbzgzH8q1QwdYBbyaGjbjdTrKYPoHm56EDkDBmv3Vt"
+				"bzz-raw://18f46ed29f758aa385f06c9011e68bdf13cf946e55cb331c3f21dbb7fc16d253",
+				"dweb:/ipfs/QmNWPrW8S7wrR65efkyfDeG8MA451eMQShXMzi6XxgRRfd"
 			]
 		}
 	},

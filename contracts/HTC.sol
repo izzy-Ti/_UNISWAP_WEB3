@@ -10,9 +10,9 @@ import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 contract TinaToken is ERC721, ERC721Enumerable, ERC721Pausable, Ownable {
     uint256 private _nextTokenId;
 
-    constructor(address initialOwner)
+    constructor()
         ERC721("TinaToken", "TNA")
-        Ownable(initialOwner)
+        Ownable(msg.sender)
     {}
 
     function _baseURI() internal pure override returns (string memory) {
@@ -26,11 +26,13 @@ contract TinaToken is ERC721, ERC721Enumerable, ERC721Pausable, Ownable {
     function unpause() public onlyOwner {
         _unpause();
     }
-
-    function safeMint(address to) public onlyOwner returns (uint256) {
+    //Add payment
+    //Add total supply cuz we have limited baseURI number
+    function publicMint() public payable{
+        require(msg.value == 0.03 ether , "Sorry you must pay the ammount"); //requireing payment to get the NFT
+        require(totalSupply() < 500, "The NFT is minted all"); // setting limit of 500
         uint256 tokenId = _nextTokenId++;
-        _safeMint(to, tokenId);
-        return tokenId;
+        _safeMint(msg.sender, tokenId);
     }
 
     // The following functions are overrides required by Solidity.
