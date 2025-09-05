@@ -746,6 +746,19 @@
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_to",
+						"type": "address"
+					}
+				],
+				"name": "withdraw",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
 			}
 		],
 		"devdoc": {
@@ -1102,11 +1115,11 @@
 			]
 		},
 		"contracts/HTC.sol": {
-			"keccak256": "0x20aee7555b552a50a3bfb460ebedec165910a75ff8b5b4b3df74bf9decab5fe8",
+			"keccak256": "0x8435b2997976b4a230c7a3424ab75f1280ef35e7b56e1f5cc29c4fa57a98ec14",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://e33bf2ea1c94cd4a2a0570652e7bc206576566b0579028088c5a801d868023d9",
-				"dweb:/ipfs/QmTJU58RHW22af3JcJa9HzbuKXDXiqv2Yp2xouN393wr4P"
+				"bzz-raw://9aef17ff51eb77609bfe62c0f20dceffb92203c8f4b0c62e3a9c90d72f9cf514",
+				"dweb:/ipfs/QmdoHfjvJv3YQQqPQ5A81LN8LHqpe2pQtgt5Yh3bU8tZXm"
 			]
 		}
 	},

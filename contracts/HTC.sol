@@ -40,6 +40,12 @@ contract TinaToken is ERC721, ERC721Enumerable, ERC721Pausable, Ownable {
         allowedListMintOpen = _allowedListMintOpen;
         publicMintOpen = _publicMintOpen;
     }
+    //withdraw function from the contract to the owner
+
+    function withdraw(address _to) external onlyOwner{
+        uint balance = address(this).balance;
+        payable(_to).transfer(balance);
+    }
     //Setting the allowedList addresses
     function setAllowList(address[] calldata _addresses) external onlyOwner { //accept the addresses as an array
         for(uint i=0; i< _addresses.length; i++){ // distributing each addresses with index of i
